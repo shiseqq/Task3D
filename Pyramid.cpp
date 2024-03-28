@@ -48,13 +48,18 @@ void CPyramid::FillEdges()
 
 Acad::ErrorStatus CPyramid::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
 {
-    pBlockTableRecord->appendAcDbEntity(m_pPyramidBase.get());
+    Acad::ErrorStatus es;
 
-    for (auto& i : m_aEdges) 
-    {
-        pBlockTableRecord->appendAcDbEntity(i.get());
+    if ((es = pBlockTableRecord->appendAcDbEntity(m_pPyramidBase.get())) != Acad::eOk) {
+        return es;
     }
 
+    for (auto& i : m_aEdges)
+    {
+        if ((es = pBlockTableRecord->appendAcDbEntity(i.get())) != Acad::eOk) {
+            return es;
+        }
+    }
     return Acad::eOk;
 }
 

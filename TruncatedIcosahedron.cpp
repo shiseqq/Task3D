@@ -16,15 +16,6 @@ CTruncatedIcosahedron::~CTruncatedIcosahedron()
     delete m_pBase;
 }
 
-Acad::ErrorStatus CTruncatedIcosahedron::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
-{
-    for (auto& i : m_aHexagons) 
-    {
-        pBlockTableRecord->appendAcDbEntity(i.get());
-    }
-    return Acad::eOk;
-}
-
 std::pair<double, double> CTruncatedIcosahedron::GetHexCenterBySide(AcGePoint3d firstPoint,
                                                                     AcGePoint3d secondPoint)
 {
@@ -156,4 +147,17 @@ void CTruncatedIcosahedron::MoveXY(const double cfX, const double cfY)
     {
         i = MovePolyline(i.get(), cfX, cfY);
     }
+}
+
+Acad::ErrorStatus CTruncatedIcosahedron::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
+{
+    Acad::ErrorStatus es;
+
+    for (auto& i : m_aHexagons)
+    {
+        if ((es = pBlockTableRecord->appendAcDbEntity(i.get())) != Acad::eOk) {
+            return es;
+        }
+    }
+    return Acad::eOk;
 }

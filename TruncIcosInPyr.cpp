@@ -14,6 +14,18 @@
 	m_pTruncIcos = AcDbMakeUnique <CTruncatedIcosahedron>();
 }
 
+void ÑTruncIcosInPyr::Rotate(double fAngle, const AcGeVector3d& cAxis, const AcGePoint3d& cCenter)
+{
+	m_pPyramid->Rotate(fAngle, cAxis, cCenter);
+	m_pTruncIcos->Rotate(fAngle, cAxis, cCenter);
+}
+
+void ÑTruncIcosInPyr::MoveXY(const double cfX, const double cfY)
+{
+	m_pPyramid->MoveXY(cfX, cfY);
+	m_pTruncIcos->MoveXY(cfX, cfY);
+}
+
 Acad::ErrorStatus ÑTruncIcosInPyr::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
 {
 	Acad::ErrorStatus es;
@@ -26,16 +38,4 @@ Acad::ErrorStatus ÑTruncIcosInPyr::AddEntityToBTR(AcDbBlockTableRecord* pBlockTa
 	}
 
 	return Acad::eOk;
-}
-
-void ÑTruncIcosInPyr::Rotate(double fAngle, const AcGeVector3d& cAxis, const AcGePoint3d& cCenter)
-{
-	m_pPyramid->Rotate(fAngle, cAxis, cCenter);
-	m_pTruncIcos->Rotate(fAngle, cAxis, cCenter);
-}
-
-void ÑTruncIcosInPyr::MoveXY(const double cfX, const double cfY)
-{
-	m_pPyramid->MoveXY(cfX, cfY);
-	m_pTruncIcos->MoveXY(cfX, cfY);
 }

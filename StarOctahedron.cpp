@@ -55,8 +55,12 @@ void CStarOctahedron::FillStars()
 
 Acad::ErrorStatus CStarOctahedron::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
 {
-	m_pOctahedron->AddEntityToBTR(pBlockTableRecord);
 	Acad::ErrorStatus es;
+
+	if ((es = m_pOctahedron->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+		return es;
+	}
+
 	for (auto& i : m_aStars) 
 	{
 		if ((es = i->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
