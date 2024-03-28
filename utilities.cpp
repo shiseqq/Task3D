@@ -14,7 +14,7 @@ std::vector<AcGePoint3d> GetPolylineVertices(AcDb3dPolyline* pPolyline) {
         pVertex = (AcDb3dPolylineVertex*)pVertIter->entity();
 
         location = pVertex->position();
-        aVertices.push_back(location);
+        aVertices.emplace_back(location);
 
         pVertex->close();
     }

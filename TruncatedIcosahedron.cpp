@@ -93,7 +93,7 @@ void CTruncatedIcosahedron::BuildThirdLayer()
 
     for (int i = 5; i < m_aHexagons.size(); ++i) 
     {
-        aVertices.push_back(GetPolylineVertices(&(*m_aHexagons[i])));
+        aVertices.emplace_back(GetPolylineVertices(&(*m_aHexagons[i])));
     }
 
     for (int i = 0; i < aVertices.size() - 1; ++i) 
@@ -110,7 +110,7 @@ void CTruncatedIcosahedron::BuildFourthLayer()
 
     for (int i = 10; i < m_aHexagons.size(); ++i) 
     {
-        aVertices.push_back(GetPolylineVertices(&(*m_aHexagons[i])));
+        aVertices.emplace_back(GetPolylineVertices(&(*m_aHexagons[i])));
     }
 
     for (int i = 0; i < aVertices.size(); ++i) 
