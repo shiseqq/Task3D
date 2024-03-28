@@ -57,13 +57,15 @@ Acad::ErrorStatus CStarOctahedron::AddEntityToBTR(AcDbBlockTableRecord* pBlockTa
 {
 	Acad::ErrorStatus es;
 
-	if ((es = m_pOctahedron->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+	if ((es = m_pOctahedron->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) 
+	{
 		return es;
 	}
 
 	for (auto& i : m_aStars) 
 	{
-		if ((es = i->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+		if ((es = i->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) 
+		{
 			return es;
 		}
 	}

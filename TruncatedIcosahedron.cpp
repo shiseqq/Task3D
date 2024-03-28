@@ -155,7 +155,8 @@ Acad::ErrorStatus CTruncatedIcosahedron::AddEntityToBTR(AcDbBlockTableRecord* pB
 
     for (auto& i : m_aHexagons)
     {
-        if ((es = pBlockTableRecord->appendAcDbEntity(i.get())) != Acad::eOk) {
+        if ((es = pBlockTableRecord->appendAcDbEntity(i.get())) != Acad::eOk) 
+        {
             return es;
         }
     }

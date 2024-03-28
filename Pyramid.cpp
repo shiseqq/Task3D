@@ -46,24 +46,6 @@ void CPyramid::FillEdges()
     }
 }
 
-Acad::ErrorStatus CPyramid::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
-{
-    Acad::ErrorStatus es;
-
-    if ((es = pBlockTableRecord->appendAcDbEntity(m_pPyramidBase.get())) != Acad::eOk) {
-        return es;
-    }
-
-    for (auto& i : m_aEdges)
-    {
-        if ((es = pBlockTableRecord->appendAcDbEntity(i.get())) != Acad::eOk) {
-            return es;
-        }
-    }
-    return Acad::eOk;
-}
-
-
 void CPyramid::Rotate(double fAngle, const AcGeVector3d& cAxis,const AcGePoint3d& cCenter)
 {
     AcGeMatrix3d rotationMatrix;
@@ -86,4 +68,23 @@ void CPyramid::MoveXY(const double cfX, const double cfY)
     {
         i = MovePolyline(i.get(), cfX, cfY);
     }
+}
+
+Acad::ErrorStatus CPyramid::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
+{
+    Acad::ErrorStatus es;
+
+    if ((es = pBlockTableRecord->appendAcDbEntity(m_pPyramidBase.get())) != Acad::eOk) 
+    {
+        return es;
+    }
+
+    for (auto& i : m_aEdges)
+    {
+        if ((es = pBlockTableRecord->appendAcDbEntity(i.get())) != Acad::eOk) 
+        {
+            return es;
+        }
+    }
+    return Acad::eOk;
 }

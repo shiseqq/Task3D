@@ -29,11 +29,14 @@ void ÑTruncIcosInPyr::MoveXY(const double cfX, const double cfY)
 Acad::ErrorStatus ÑTruncIcosInPyr::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableRecord)
 {
 	Acad::ErrorStatus es;
-	if ((es = m_pPyramid->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+
+	if ((es = m_pPyramid->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) 
+	{
 		return es;
 	}
 
-	if ((es = m_pTruncIcos->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+	if ((es = m_pTruncIcos->AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) 
+	{
 		return es;
 	}
 

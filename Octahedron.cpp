@@ -12,11 +12,13 @@ Acad::ErrorStatus COctahedron::AddEntityToBTR(AcDbBlockTableRecord* pBlockTableR
 {
     Acad::ErrorStatus es;
 
-    if ((es = m_pTopPyramid->CPyramid::AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+    if ((es = m_pTopPyramid->CPyramid::AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) 
+	{
         return es;
     }
 
-	if ((es = m_pBottomPyramid->CPyramid::AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) {
+	if ((es = m_pBottomPyramid->CPyramid::AddEntityToBTR(pBlockTableRecord)) != Acad::eOk) 
+	{
 		return es;
 	}
 
